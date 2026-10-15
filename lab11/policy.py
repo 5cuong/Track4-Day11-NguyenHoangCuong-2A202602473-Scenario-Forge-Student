@@ -9,4 +9,9 @@ def choose_policy(table: list[dict], baseline_progress: float, max_loss: float =
 
     Ranking by the UPPER bound, not the point estimate, stops you picking a policy that only looks safe
     because its few test crashes happened not to be drawn."""
-    raise NotImplementedError("TODO 10: choose_policy")
+    progress_floor = (1.0 - max_loss) * baseline_progress
+    eligible = [row for row in table if row["progress"] >= progress_floor]
+    if not eligible:
+        return None
+    # min() is stable, so exact ties on both criteria retain the table's order.
+    return min(eligible, key=lambda row: (row["fail_hi"], -row["progress"]))

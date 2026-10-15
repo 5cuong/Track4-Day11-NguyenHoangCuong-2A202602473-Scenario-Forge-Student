@@ -1,0 +1,24 @@
+{
+  "format": "avsim-studio/1",
+  "params": {},
+  "policy": {},
+  "hazards": [
+    {
+      "type": "ped",
+      "x": 90,
+      "side": "S",
+      "v": 1.4,
+      "t0": 7.0,
+      "trig": 105
+    }
+  ],
+  "ego": "planner",
+  "space": {
+    "h0_x": [90, 100],
+    "h0_v": [1.2, 1.6],
+    "h0_t0": [6.5, 7.5],
+    "h0_trig": [90, 120]
+  },
+  "exposure": 0.05,
+  "why": "Custom hazard: a pedestrian crosses mid-block from the south curb into the ego lane while the planner approaches. FHWA-HRT-06-125 chapter 5 reports 8 of 184 coded pedestrian behaviors as hurrying to avoid an oncoming motorist; 8/184 = 0.043, rounded to an explicit 0.05 encounter-per-trip prior. This is only a transfer assumption: the study observed intersections and the numerator is pedestrian behavior, not a measured rate for this exact mid-block event or this town, so route-specific video/counts must replace it. FHWA-HRT-98-107 recommends 1.2 m/s for most pedestrian crossing conditions and notes 1.4 m/s as the current HCM design speed; the varied 1.2-1.6 m/s range covers that walking-speed scale. The x=[90,100] m and t0=[6.5,7.5] s windows are a local simulator sweep around the demonstrated encounter, while trig=[90,120] m varies when it becomes detectable; these are coverage ranges, not empirical distributions. Sources: https://www.fhwa.dot.gov/publications/research/safety/pedbike/06125/chapter5.cfm ; https://www.fhwa.dot.gov/publications/research/safety/pedbike/98107/section2.cfm"
+}
